@@ -1,9 +1,9 @@
-
 # 유튜브 동영상을 요약하고 번역하는 웹 앱
+
 import my_yt_tran  # 유튜브 동영상 정보와 자막을 가져오기 위한 모듈 임포트
 import my_text_sum # 텍스트를 요약하기 위한 모듈
 import streamlit as st
-from openai import OpenAI
+import openai
 import os
 import tiktoken
 import textwrap
@@ -88,19 +88,19 @@ def button_callback():
     st.session_state['input'] = ""
     
 # ------------- 사이드바 화면 구성 --------------------------  
-st.title("요약 설정 ")
-url_text = st.text_input("유튜브 동영상 URL을 입력하세요.", key="input")
+st.sidebar.title("요약 설정 ")
+url_text = st.sidebar.text_input("유튜브 동영상 URL을 입력하세요.", key="input")
 
-clicked_for_clear = st.button('URL 입력 내용 지우기',  on_click=button_callback)
+clicked_for_clear = st.sidebar.button('URL 입력 내용 지우기',  on_click=button_callback)
 
-yt_lang = st.radio('유튜브 동영상 언어 선택', ['한국어', '영어'], index=1, horizontal=True)
+yt_lang = st.sidebar.radio('유튜브 동영상 언어 선택', ['한국어', '영어'], index=1, horizontal=True)
     
 if yt_lang == '영어':
-    trans_method = st.radio('번역 방법 선택', ['OpenAI', 'DeepL'], index=1, horizontal=True)
+    trans_method = st.sidebar.radio('번역 방법 선택', ['OpenAI', 'DeepL'], index=1, horizontal=True)
 else:
     trans_method = ""
 
-clicked_for_sum = st.button('동영상 내용 요약')
+clicked_for_sum = st.sidebar.button('동영상 내용 요약')
 
 # ------------- 메인 화면 구성 --------------------------     
 st.title("유튜브 동영상 요약")
