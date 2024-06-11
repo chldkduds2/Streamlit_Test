@@ -53,7 +53,7 @@ def summarize_text_final(text_list, lang = 'en'):
 # OpenAI 라이브러리를 이용해 영어를 한국어로 번역하는 함수
 def traslate_english_to_korean_using_openAI(text):    
     # API 키 설정
-    client = OpenAI(api_key=st.secrets["OpenAI"])
+    client = OpenAI(api_key=st.secrets["api_key"])
 
     # 대화 메시지 정의
     user_content = f"Translate the following English sentences into Korean.\n {text}"
